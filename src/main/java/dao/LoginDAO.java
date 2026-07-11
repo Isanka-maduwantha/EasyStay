@@ -26,6 +26,7 @@ public class LoginDAO {
                    user.setUsername(rs.getString("username"));
                    user.setPassword(rs.getString("password"));
                    user.setId(rs.getInt("user_id"));
+                   user.setName(rs.getString("name"));
                 } else {
                     
                    System.out.println("No record found with the given Username and Password .");

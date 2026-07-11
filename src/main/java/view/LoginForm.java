@@ -22,6 +22,8 @@ public class LoginForm extends javax.swing.JFrame {
      */
     public LoginForm() {
         initComponents();
+                txt_uname.setText("RCxxx");
+        txt_uname.setForeground(Color.LIGHT_GRAY);
     }
 
     /**
@@ -53,6 +55,11 @@ public class LoginForm extends javax.swing.JFrame {
         jLabel2.setText("Username");
 
         txt_uname.setFont(new java.awt.Font("URW Gothic", 0, 12)); // NOI18N
+        txt_uname.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txt_unameMouseClicked(evt);
+            }
+        });
 
         jLabel3.setFont(new java.awt.Font("URW Gothic", 0, 12)); // NOI18N
         jLabel3.setText("Password");
@@ -172,6 +179,12 @@ timer.start();
             
 
     }//GEN-LAST:event_btn_loginActionPerformed
+
+    private void txt_unameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txt_unameMouseClicked
+    
+        txt_uname.setText("");
+        
+    }//GEN-LAST:event_txt_unameMouseClicked
 
     /**
      * @param args the command line arguments
