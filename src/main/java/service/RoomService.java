@@ -25,4 +25,7 @@ public class RoomService {
         }
         return rooms;
     }
+            public boolean isRoomValid(int id) {
+                return roomDAO.checkRoom(id);
+        }
 }

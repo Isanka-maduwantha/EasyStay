@@ -21,13 +21,18 @@ import javax.swing.table.DefaultTableModel;
 public class RoomController {
     private JTable roomTable;
     private Rooms view;
+    private final RoomService roomService = new RoomService();
 
     public RoomController( Rooms view){
         this.view = view;
 //        this.roomTable = table;
     }
+        public RoomController(){
+     
+
+    }
     public void handleRoomData(){
-        List<Room> rooms = new RoomService().getRoomReport();
+        List<Room> rooms = roomService.getRoomReport();
           
          DefaultTableModel model = (DefaultTableModel) view.tbl_rooms.getModel();
          
@@ -38,4 +43,15 @@ public class RoomController {
              model.addRow(row);
          }
     }
+
+            public boolean roomExist(String room_id){
+            try {
+                int id = Integer.parseInt(room_id);
+                return roomService.isRoomValid(id);
+            }catch(Exception ex){
+                System.out.println("controller.RoomController.roomExist()"+ex.toString());
+            }
+            return false;
+        }
+
 }

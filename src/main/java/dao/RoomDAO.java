@@ -43,4 +43,27 @@ public class RoomDAO {
         return roomList;
     
     }
+    
+    public boolean checkRoom(int id){
+            
+            String sql = "SELECT EXISTS(SELECT 1 FROM room WHERE room_id = ?) AS id_exists";
+            
+            try(    Connection con = DBConnection.getConnection() ){
+                
+                 PreparedStatement ps = con.prepareStatement(sql);
+                 
+                 ps.setInt(1, id);
+                 
+                 try (ResultSet rs = ps.executeQuery()){
+                     if(rs.next()){
+                         return rs.getBoolean("id_exists");
+                     }
+                 }
+                 
+            } catch(SQLException ex){
+                System.out.println("dao.RoomDAO.checkRoom()"+ex.toString());
+                ex.printStackTrace();
+            }
+            return false;
+        }
 }

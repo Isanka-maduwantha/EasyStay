@@ -4,6 +4,15 @@
  */
 package view;
 
+import java.awt.Color;
+import javax.swing.UIManager;
+import mdlaf.MaterialLookAndFeel;
+import mdlaf.themes.MaterialLiteTheme;
+import org.kordamp.ikonli.materialdesign2.MaterialDesignA;
+import org.kordamp.ikonli.materialdesign2.MaterialDesignC;
+import org.kordamp.ikonli.materialdesign2.MaterialDesignU;
+import org.kordamp.ikonli.swing.FontIcon;
+
 /**
  *
  * @author orian
@@ -32,10 +41,14 @@ public class Reservation extends javax.swing.JFrame {
         txt_customer = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         lbl_customer_valid = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        txt_room = new javax.swing.JTextField();
+        lbl_room_valid = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(1000, 600));
 
+        jLabel1.setFont(new java.awt.Font("Ubuntu Sans Mono", 1, 14)); // NOI18N
         jLabel1.setText("Reservation");
 
         txt_customer.addActionListener(this::txt_customerActionPerformed);
@@ -43,7 +56,10 @@ public class Reservation extends javax.swing.JFrame {
 
         jLabel2.setText("Customer Id ");
 
-        lbl_customer_valid.setText("valid");
+        jLabel3.setText("Room Id");
+
+        txt_room.addActionListener(this::txt_roomActionPerformed);
+        txt_room.addPropertyChangeListener(this::txt_roomPropertyChange);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -52,13 +68,20 @@ public class Reservation extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(118, 118, 118)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
                     .addComponent(jLabel1)
+                    .addComponent(jLabel2)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(txt_customer, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lbl_customer_valid)))
-                .addContainerGap(197, Short.MAX_VALUE))
+                        .addComponent(txt_customer, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(19, 19, 19)
+                        .addComponent(lbl_customer_valid, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(30, 30, 30)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(txt_room, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(lbl_room_valid, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(99, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -66,12 +89,16 @@ public class Reservation extends javax.swing.JFrame {
                 .addGap(28, 28, 28)
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel2)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel3))
                 .addGap(4, 4, 4)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(lbl_customer_valid, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txt_customer))
-                .addContainerGap(189, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txt_customer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txt_room, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbl_room_valid, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbl_customer_valid, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(188, Short.MAX_VALUE))
         );
 
         pack();
@@ -83,7 +110,13 @@ public class Reservation extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_customerActionPerformed
     private void validateCustomer() {
         String cusId = txt_customer.getText();
-    
+    FontIcon materialIconCheck = FontIcon.of(MaterialDesignC.CHECK);
+            FontIcon materialIconClose = FontIcon.of(MaterialDesignC.CLOSE);
+            // 2. Customize size (in pixels) and color
+            materialIconCheck.setIconSize(24);
+            materialIconCheck.setIconColor(Color.GREEN);
+            materialIconClose.setIconSize(24);
+            materialIconClose.setIconColor(Color.RED);
         if (cusId == null || cusId.trim().isEmpty()) {
                 lbl_customer_valid.setText("");
                 return;
@@ -92,10 +125,10 @@ public class Reservation extends javax.swing.JFrame {
 
         if (new controller.CustomerController().customerExist(cusId)) 
             {
-                lbl_customer_valid.setText("✓");
+                lbl_customer_valid.setIcon(materialIconCheck);
         } 
          else {
-                lbl_customer_valid.setText("❌");
+                lbl_customer_valid.setIcon(materialIconClose);
         }
 }
     private void txt_customerPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_txt_customerPropertyChange
@@ -119,6 +152,51 @@ public class Reservation extends javax.swing.JFrame {
        
     }//GEN-LAST:event_txt_customerPropertyChange
 
+    private void txt_roomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_roomActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_roomActionPerformed
+  private void validateRoom() {
+        String roomId = txt_room.getText();
+    FontIcon materialIconCheck = FontIcon.of(MaterialDesignC.CHECK);
+            FontIcon materialIconClose = FontIcon.of(MaterialDesignC.CLOSE);
+            // 2. Customize size (in pixels) and color
+            materialIconCheck.setIconSize(24);
+            materialIconCheck.setIconColor(Color.GREEN);
+            materialIconClose.setIconSize(24);
+            materialIconClose.setIconColor(Color.RED);
+        if (roomId == null || roomId.trim().isEmpty()) {
+                lbl_room_valid.setText("");
+                return;
+        }
+    
+
+        if (new controller.RoomController().roomExist(roomId)) 
+            {
+                lbl_room_valid.setIcon(materialIconCheck);
+        } 
+         else {
+                lbl_room_valid.setIcon(materialIconClose);
+        }
+}
+    private void txt_roomPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_txt_roomPropertyChange
+             txt_room.getDocument().addDocumentListener(new javax.swing.event.DocumentListener() {
+              @Override
+                public void insertUpdate(javax.swing.event.DocumentEvent e) {
+                      validateRoom(); 
+                }
+
+              @Override
+                public void removeUpdate(javax.swing.event.DocumentEvent e) {
+                    validateRoom();
+                  }
+
+            @Override
+              public void changedUpdate(javax.swing.event.DocumentEvent e) {
+                    validateRoom();
+                  }
+        });        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_roomPropertyChange
+
     /**
      * @param args the command line arguments
      */
@@ -128,15 +206,17 @@ public class Reservation extends javax.swing.JFrame {
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
-            logger.log(java.util.logging.Level.SEVERE, null, ex);
+       try 
+       {
+             UIManager.setLookAndFeel(new MaterialLookAndFeel(new MaterialLiteTheme()));
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+        } catch (Exception ex) {
+            System.out.println("view.Dashboard.main()");
         }
         //</editor-fold>
 
@@ -147,7 +227,10 @@ public class Reservation extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel lbl_customer_valid;
+    private javax.swing.JLabel lbl_room_valid;
     private javax.swing.JTextField txt_customer;
+    private javax.swing.JTextField txt_room;
     // End of variables declaration//GEN-END:variables
 }
