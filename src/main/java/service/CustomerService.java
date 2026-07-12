@@ -5,16 +5,19 @@
 package service;
 
 import model.Customer;
-
+import dao.CustomerDAO;
 /**
  *
  * @author orian
  */
 public class CustomerService {
-    
+        private final CustomerDAO customerDAO = new CustomerDAO();
         public boolean IscustomerRegisterSuccessfull(Customer customer){
             
-            return new dao.CustomerDAO().saveCustomer(customer);
+            return customerDAO.saveCustomer(customer);
             
+        }
+        public boolean isCustoerValid(int id) {
+                return customerDAO.checkCustomer(id);
         }
 }
