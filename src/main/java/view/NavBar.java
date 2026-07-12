@@ -4,6 +4,9 @@
  */
 package view;
 
+import java.awt.Window;
+import javax.swing.SwingUtilities;
+
 /**
  *
  * @author orian
@@ -29,13 +32,14 @@ public class NavBar extends javax.swing.JPanel {
         jButton8 = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        btn_dashboard = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        btn_cusRegister = new javax.swing.JButton();
+        btn_logout = new javax.swing.JButton();
 
         jButton8.setText("jButton8");
 
@@ -49,9 +53,10 @@ public class NavBar extends javax.swing.JPanel {
         jButton2.setText("Reservation Form");
         jButton2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
 
-        jButton3.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
-        jButton3.setText("Dashboard");
-        jButton3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btn_dashboard.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
+        btn_dashboard.setText("Dashboard");
+        btn_dashboard.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btn_dashboard.addActionListener(this::btn_dashboardActionPerformed);
 
         jButton4.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
         jButton4.setText("Rooms");
@@ -73,9 +78,13 @@ public class NavBar extends javax.swing.JPanel {
         jButton7.setText("Payment");
         jButton7.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
 
-        jButton1.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
-        jButton1.setText("Customer Register");
-        jButton1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btn_cusRegister.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
+        btn_cusRegister.setText("Customer Register");
+        btn_cusRegister.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btn_cusRegister.addActionListener(this::btn_cusRegisterActionPerformed);
+
+        btn_logout.setText("Logout");
+        btn_logout.addActionListener(this::btn_logoutActionPerformed);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -93,14 +102,15 @@ public class NavBar extends javax.swing.JPanel {
                                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 10, Short.MAX_VALUE)))
+                                .addGap(0, 2, Short.MAX_VALUE)))
                         .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btn_cusRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btn_dashboard, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btn_logout, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
@@ -109,7 +119,7 @@ public class NavBar extends javax.swing.JPanel {
                 .addGap(43, 43, 43)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btn_dashboard, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -117,19 +127,47 @@ public class NavBar extends javax.swing.JPanel {
                 .addGap(70, 70, 70)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btn_cusRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addGap(26, 26, 26)
+                .addComponent(btn_logout)
+                .addContainerGap(31, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btn_cusRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cusRegisterActionPerformed
+         Window window = SwingUtilities.getWindowAncestor(this);
+    if (window != null) {
+        window.dispose();
+        new CustomerRegister().setVisible(true);
+    }
+        
+
+    }//GEN-LAST:event_btn_cusRegisterActionPerformed
+
+    private void btn_dashboardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_dashboardActionPerformed
+        Window window = SwingUtilities.getWindowAncestor(this);
+    if (window != null) {
+        window.dispose();
+        new Dashboard().setVisible(true);
+    }
+    }//GEN-LAST:event_btn_dashboardActionPerformed
+
+    private void btn_logoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_logoutActionPerformed
+                Window window = SwingUtilities.getWindowAncestor(this);
+    if (window != null) {
+        window.dispose();
+        new LoginForm().setVisible(true);
+    }
+    }//GEN-LAST:event_btn_logoutActionPerformed
+
 public void addDashboardListener(java.awt.event.ActionListener listener) {
-        jButton3.addActionListener(listener);
+        btn_dashboard.addActionListener(listener);
     }
 
     public void addRoomsListener(java.awt.event.ActionListener listener) {
@@ -141,7 +179,7 @@ public void addDashboardListener(java.awt.event.ActionListener listener) {
     }
 
     public void addCustomerRegisterListener(java.awt.event.ActionListener listener) {
-        jButton1.addActionListener(listener);
+        btn_cusRegister.addActionListener(listener);
     }
 
     public void addReservationListener(java.awt.event.ActionListener listener) {
@@ -156,9 +194,10 @@ public void addDashboardListener(java.awt.event.ActionListener listener) {
         jButton6.addActionListener(listener);
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btn_cusRegister;
+    private javax.swing.JButton btn_dashboard;
+    private javax.swing.JButton btn_logout;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
