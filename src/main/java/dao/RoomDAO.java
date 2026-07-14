@@ -66,4 +66,34 @@ public class RoomDAO {
             }
             return false;
         }
+    
+        public Room getRoom(int id){
+            Room room = null;
+            String sql = "SELECT  room_id,room_number,room_type,price,room_status FROM room WHERE room_id = ?" ;
+            
+            try(    Connection con = DBConnection.getConnection() ){
+                
+                 PreparedStatement ps = con.prepareStatement(sql);
+                 
+                 ps.setInt(1, id);
+                 
+                 try (ResultSet rs = ps.executeQuery()){
+                     if(rs.next()){
+                         room = new Room();
+                         room.setId(rs.getInt("room_id"));
+                         room.setRoom_num(rs.getString("room_number"));
+                         room.setRoom_type(rs.getString("room_type"));
+                         room.setPrice(rs.getDouble("price"));
+                         room.setStatus(rs.getBoolean("room_status"));
+                         
+                         return room;
+                     }
+                 }
+                 
+            } catch(SQLException ex){
+                System.out.println("dao.RoomDAO.checkRoom()"+ex.toString());
+                ex.printStackTrace();
+            }
+            return room;
+        }
 }

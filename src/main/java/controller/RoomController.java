@@ -53,5 +53,15 @@ public class RoomController {
             }
             return false;
         }
+            public String roomPrice(String id){
+            
+               try{ 
+                   int roomid = Integer.parseInt(id);
+                   return roomService.getRoomPrice(roomid);
+               } catch(NumberFormatException ex){
+                   System.out.println(ex.toString());
+               }
+               return "";
+            }
 
 }

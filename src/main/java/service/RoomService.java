@@ -18,14 +18,13 @@ public class RoomService {
     public List<Room> getRoomReport() {
         List <Room> rooms = roomDAO.getAllRooms();
         
-        for(Room room: rooms) {
-            if(room.isStatus() == true) {
-                room.setStatus_Name("Avialiable");
-            } else room.setStatus_Name("Reserved");
-        }
+
         return rooms;
     }
             public boolean isRoomValid(int id) {
                 return roomDAO.checkRoom(id);
         }
+    public String  getRoomPrice(int id){
+        return roomDAO.getRoom(id).getPrice() +"";
+    }
 }

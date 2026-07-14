@@ -59,4 +59,34 @@ public class CustomerDAO {
             }
             return false;
         }
+        
+                public Customer getCustomer(int id){
+            Customer cus = null;
+            String sql = "SELECT  customer_id,name,nic,phone,email from customer where customer_id = ? ";
+            
+            try(    Connection con = DBConnection.getConnection() ){
+                
+                 PreparedStatement ps = con.prepareStatement(sql);
+                 
+                 ps.setInt(1, id);
+                 
+                 try (ResultSet rs = ps.executeQuery()){
+                     
+                     if(rs.next()){
+                         cus = new Customer();
+                         cus.setId(rs.getInt("customer_id"));
+                         cus.setName(rs.getString("name"));
+                         cus.setNic(rs.getString("nic"));
+                         cus.setPhone(rs.getString("phone"));
+                         cus.setEmail(rs.getString("email"));
+                         cus.setDob(rs.getDate("dob"));
+                         return cus;
+                     }
+                 }
+                 
+            } catch(SQLException ex){
+                System.out.println("dao.CustomerDAO.getCustomer()"+ex.toString());
+            }
+            return cus;
+        }
 }

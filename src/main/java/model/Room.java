@@ -55,7 +55,14 @@ public class Room {
     }
 
     public void setStatus(boolean status) {
-        this.status = status;
+              this.status = status;
+        
+            if(status == true) {
+                this.setStatus_Name("Avialiable");
+            } else{
+                this.setStatus_Name("Reserved");
+            }
+  
     }
 
     public String getStatus_Name() {
