@@ -26,7 +26,7 @@ public class CustomerController {
         public boolean customerExist(String cus_id){
             try {
                 int id = Integer.parseInt(cus_id);
-                return cusService.isCustoerValid(id);
+                return cusService.isCustomerValid(id);
             }catch(Exception ex){
                 System.out.println("controller.CustomerController.customerExist()"+ex.toString());
             }

@@ -31,13 +31,12 @@ public class NavBar extends javax.swing.JPanel {
 
         jButton8 = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
+        btn_reservation = new javax.swing.JButton();
         btn_dashboard = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        btn_rooms = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
         btn_cusRegister = new javax.swing.JButton();
         btn_logout = new javax.swing.JButton();
 
@@ -49,18 +48,20 @@ public class NavBar extends javax.swing.JPanel {
         jLabel4.setForeground(new java.awt.Color(153, 153, 153));
         jLabel4.setText("Actions");
 
-        jButton2.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
-        jButton2.setText("Reservation Form");
-        jButton2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btn_reservation.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
+        btn_reservation.setText("Reservation Form");
+        btn_reservation.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btn_reservation.addActionListener(this::btn_reservationActionPerformed);
 
         btn_dashboard.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
         btn_dashboard.setText("Dashboard");
         btn_dashboard.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btn_dashboard.addActionListener(this::btn_dashboardActionPerformed);
 
-        jButton4.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
-        jButton4.setText("Rooms");
-        jButton4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btn_rooms.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
+        btn_rooms.setText("Rooms");
+        btn_rooms.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btn_rooms.addActionListener(this::btn_roomsActionPerformed);
 
         jLabel2.setFont(new java.awt.Font("Roboto", 0, 10)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(153, 153, 153));
@@ -73,10 +74,6 @@ public class NavBar extends javax.swing.JPanel {
         jButton6.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
         jButton6.setText("Report");
         jButton6.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-
-        jButton7.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
-        jButton7.setText("Payment");
-        jButton7.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
 
         btn_cusRegister.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
         btn_cusRegister.setText("Customer Register");
@@ -99,19 +96,21 @@ public class NavBar extends javax.swing.JPanel {
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel4)
-                                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 2, Short.MAX_VALUE)))
+                                    .addComponent(btn_reservation, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 0, Short.MAX_VALUE)))
                         .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btn_cusRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btn_dashboard, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btn_rooms, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btn_logout, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -121,7 +120,7 @@ public class NavBar extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btn_dashboard, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btn_rooms, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(70, 70, 70)
@@ -129,14 +128,12 @@ public class NavBar extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btn_cusRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btn_reservation, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
+                .addGap(68, 68, 68)
                 .addComponent(btn_logout)
-                .addContainerGap(31, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -166,12 +163,28 @@ public class NavBar extends javax.swing.JPanel {
     }
     }//GEN-LAST:event_btn_logoutActionPerformed
 
+    private void btn_roomsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_roomsActionPerformed
+                             Window window = SwingUtilities.getWindowAncestor(this);
+    if (window != null) {
+        window.dispose();
+        new Rooms().setVisible(true);
+    }
+    }//GEN-LAST:event_btn_roomsActionPerformed
+
+    private void btn_reservationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_reservationActionPerformed
+                                   Window window = SwingUtilities.getWindowAncestor(this);
+    if (window != null) {
+        window.dispose();
+        new ReservationForm().setVisible(true);
+    }
+    }//GEN-LAST:event_btn_reservationActionPerformed
+
 public void addDashboardListener(java.awt.event.ActionListener listener) {
         btn_dashboard.addActionListener(listener);
     }
 
     public void addRoomsListener(java.awt.event.ActionListener listener) {
-        jButton4.addActionListener(listener);
+        btn_rooms.addActionListener(listener);
     }
 
     public void addCustomersListener(java.awt.event.ActionListener listener) {
@@ -183,11 +196,7 @@ public void addDashboardListener(java.awt.event.ActionListener listener) {
     }
 
     public void addReservationListener(java.awt.event.ActionListener listener) {
-        jButton2.addActionListener(listener);
-    }
-
-    public void addPaymentListener(java.awt.event.ActionListener listener) {
-        jButton7.addActionListener(listener);
+        btn_reservation.addActionListener(listener);
     }
 
     public void addReportListener(java.awt.event.ActionListener listener) {
@@ -197,11 +206,10 @@ public void addDashboardListener(java.awt.event.ActionListener listener) {
     private javax.swing.JButton btn_cusRegister;
     private javax.swing.JButton btn_dashboard;
     private javax.swing.JButton btn_logout;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton4;
+    private javax.swing.JButton btn_reservation;
+    private javax.swing.JButton btn_rooms;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;

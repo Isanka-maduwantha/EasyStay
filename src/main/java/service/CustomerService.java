@@ -17,7 +17,7 @@ public class CustomerService {
             return customerDAO.saveCustomer(customer);
             
         }
-        public boolean isCustoerValid(int id) {
+        public boolean isCustomerValid(int id) {
                 return customerDAO.checkCustomer(id);
         }
 }

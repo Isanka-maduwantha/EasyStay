@@ -47,8 +47,7 @@ public class Dashboard extends javax.swing.JFrame {
         javax.swing.JPanel jPanel1 = new view.NavBar();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1280, 720));
-        setResizable(false);
+        setPreferredSize(new java.awt.Dimension(1000, 600));
         setSize(new java.awt.Dimension(1280, 720));
 
         jLabel1.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
