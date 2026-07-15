@@ -41,6 +41,17 @@
     <artifactId>LGoodDatePicker</artifactId>
     <version>11.2.1</version>
 </dependency>
+<dependency>
+    <groupId>org.kordamp.ikonli</groupId>
+    <artifactId>ikonli-swing</artifactId>
+    <version>12.4.0</version>
+    <type>jar</type>
+</dependency>
+<dependency>
+    <groupId>org.kordamp.ikonli</groupId>
+    <artifactId>ikonli-materialdesign2-pack</artifactId>
+    <version>12.3.0</version>
+</dependency>
     </dependencies>
     <name>EasyStay</name>
 </project>
