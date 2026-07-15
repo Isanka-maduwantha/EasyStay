@@ -24,7 +24,12 @@
         <artifactId>flatlaf</artifactId>
         <version>3.5.1</version> <!-- Use the latest stable version -->
     </dependency>
-
+<dependency>
+    <groupId>net.sf.jasperreports</groupId>
+    <artifactId>jasperreports</artifactId>
+    <version>7.0.3</version>
+    <type>jar</type>
+</dependency>
     <!-- Material Themes Extension Pack -->
     <dependency>
         <groupId>com.formdev</groupId>
